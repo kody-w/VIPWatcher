@@ -63,6 +63,42 @@ bash setup.sh
 - Easy to add custom agents
 - Built-in memory management agents
 
+## 🏗️ System Architecture
+
+For a comprehensive understanding of how this solution works, see our [**detailed architecture diagrams**](architecture-diagram.md) that show:
+
+- **Enterprise Architecture Overview** - Complete flow from Microsoft Teams/Copilot Studio through Azure Functions to OpenAI
+- **Data Flow Sequence** - Step-by-step message processing with timing
+- **Component Architecture** - All Azure resources and their relationships
+- **Agent Execution Flow** - How agents are loaded, executed, and orchestrated
+- **Memory Architecture** - File share structure for shared and user-specific memories
+- **Deployment Architecture** - From GitHub to Azure with automated configuration
+- **Copilot Studio Integration** - How to connect this function to Microsoft Copilot Studio
+
+### Quick Architecture Summary
+
+```mermaid
+graph LR
+    A[Microsoft Teams User] --> B[Copilot Studio]
+    B --> C[Azure Function]
+    C --> D[AI Agents]
+    D --> E[Azure OpenAI GPT-4o]
+    D --> F[Azure File Share<br/>Memory Storage]
+    E --> C
+    F --> C
+    C --> B
+    B --> A
+    
+    style A fill:#50E6FF,stroke:#fff,stroke-width:2px
+    style B fill:#7F5AF0,stroke:#fff,stroke-width:2px
+    style C fill:#0078D4,stroke:#fff,stroke-width:2px
+    style D fill:#8B5CF6,stroke:#fff,stroke-width:2px
+    style E fill:#10A37F,stroke:#fff,stroke-width:2px
+    style F fill:#FFB900,stroke:#fff,stroke-width:2px
+```
+
+**Tech Stack**: Azure Functions (Python 3.11) → Azure OpenAI GPT-4o → Azure Storage → Application Insights
+
 ## 📋 Prerequisites
 
 The setup script will automatically install missing components, but you'll need:
